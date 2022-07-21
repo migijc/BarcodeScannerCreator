@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel's Sketchpad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="body">
+
+    <button class="changeGrid">Change The Grid Size</button>
+    <div class="gridContainer"></div>
+    
+
+    <script>
+        const gridContainer=document.querySelector('.gridContainer')
+        function sixteenGrid(){
+            for (let i=0; i<256; i++) {
+                let oneSquare= document.createElement('div')
+                oneSquare.classList.add("squares")
+                gridContainer.appendChild(oneSquare);
+
+            }
+        }
+        sixteenGrid();
+
+        let x= function(e){
+            console.log(e)
+        }
+
+        const eachSquare = document.querySelectorAll(".squares");
+        console.log(eachSquare);
+        eachSquare.forEach((square) => {
+            square.addEventListener("mouseenter", ()=> {
+                square.classList.add("hoveredOn");
+                x();
+            });
+        });
+        const body= document.querySelector(".body");
+        let buttonPressed= document.querySelector(".changeGrid")
+        buttonPressed.addEventListener('click', ()=> {
+        let squarePerRow= prompt("Enter the number of rows and columns you would like");
+        let totalSquares= squarePerRow * squarePerRow;
+        body.removeChild(gridContainer);
+        newGrid(totalSquares);
+        
+        })
+
+        function newGrid(num){
+            const newGridContainer=document.createElement('div')
+            newGridContainer.classList.add("newContainer")
+            for (let i=0; i<num; i++) {
+                let oneSquare= document.createElement('div')
+                oneSquare.classList.add("squares")
+                newGridContainer.appendChild(oneSquare);
+                body.appendChild(newGridContainer);
+
+            }
+        }
+
+        
+
+
+
+
+    </script>
+</body>
+</html>
